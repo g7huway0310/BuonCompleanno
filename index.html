@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 30th Birthday, Tina! 🎂✨</title>
+
+    <!-- Google Fonts: Zen Maru Gothic for warm, friendly Japanese/Chinese typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Zen Maru Gothic', 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #fde2e4 0%, #fff1e6 35%, #fef6c9 70%, #e2f0d9 100%);
+            background-size: 300% 300%;
+            animation: gradientFlow 18s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Polaroid Photo Card */
+        .polaroid-frame {
+            background: #ffffff;
+            padding: 12px 12px 38px 12px;
+            box-shadow: 0 12px 30px -8px rgba(135, 102, 116, 0.2), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .polaroid-frame img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .polaroid-frame:hover {
+            transform: translateY(-8px) scale(1.03) rotate(0deg) !important;
+            box-shadow: 0 20px 40px -10px rgba(135, 102, 116, 0.3);
+            z-index: 20;
+        }
+
+        /* Cute Washi Tape effect */
+        .washi-tape-pink {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 105px;
+            height: 28px;
+            background: rgba(251, 182, 206, 0.75);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            border-left: 3px dashed rgba(255, 255, 255, 0.7);
+            border-right: 3px dashed rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(1px);
+            z-index: 10;
+        }
+
+        .washi-tape-yellow {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%) rotate(3deg);
+            width: 105px;
+            height: 28px;
+            background: rgba(254, 240, 138, 0.85);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            border-left: 3px dashed rgba(255, 255, 255, 0.7);
+            border-right: 3px dashed rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(1px);
+            z-index: 10;
+        }
+
+        /* Floating particles canvas */
+        #sparkleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Music Button Animation */
+        @keyframes gentle-bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-bounce-gentle {
+            animation: gentle-bounce 2.6s ease-in-out infinite;
+        }
+
+        /* Letter card styling */
+        .letter-paper {
+            background-color: #fffefb;
+            background-image: 
+                radial-gradient(#fed7aa 0.75px, transparent 0.75px),
+                radial-gradient(#fed7aa 0.75px, #fffefb 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen py-10 px-4 sm:px-6">
+
+    <!-- Sparkle Animation Canvas -->
+    <canvas id="sparkleCanvas"></canvas>
+
+    <!-- Main Scrapbook Card Container -->
+    <main class="relative z-10 w-full max-w-3xl bg-white/85 backdrop-blur-md rounded-3xl p-6 sm:p-10 md:p-14 shadow-2xl border-4 border-white">
+        
+        <!-- Top Small Tag -->
+        <div class="flex justify-center mb-2">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-rose-100 text-rose-500 border border-rose-200 shadow-sm">
+                🎉 Chapter 30 • Special Milestone
+            </span>
+        </div>
+
+        <!-- Header Title -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 tracking-tight leading-snug">
+                Happy 30th Birthday, Tina! 🎂✨
+            </h1>
+            <p class="text-sm sm:text-base text-rose-400 mt-2 font-medium">
+                誠實、輕盈地，像顆小石子一樣咕嚕咕嚕向前吧 🌱
+            </p>
+        </header>
+
+        <!-- Polaroid Photos Section -->
+        <section class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-10 md:gap-12 mb-12">
+            
+            <!-- Photo 1 -->
+            <div class="polaroid-frame w-64 sm:w-68 md:w-72 transform -rotate-2">
+                <div class="washi-tape-pink"></div>
+                <img src="image_696d65.jpg" alt="Tina walking in the green landscape" onerror="this.onerror=null; this.src='https://placehold.co/600x800/fecdd3/831843?text=Tina+in+Nature';">
+                <div class="mt-3 text-center text-xs text-stone-500 tracking-widest font-mono">
+                    FAROE ISLANDS 🍃
+                </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="polaroid-frame w-64 sm:w-68 md:w-72 transform rotate-3 sm:mt-6">
+                <div class="washi-tape-yellow"></div>
+                <img src="image_d3a4da.jpg" alt="Tina smiling by the ocean" onerror="this.onerror=null; this.src='https://placehold.co/600x800/fef08a/713f12?text=Tina+at+Sea';">
+                <div class="mt-3 text-center text-xs text-stone-500 tracking-widest font-mono">
+                    BEAUTIFUL MOMENTS ✨
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Birthday Message Letter -->
+        <article class="letter-paper rounded-2xl p-6 sm:p-9 shadow-inner border border-rose-100/80 mb-10 text-gray-700 leading-relaxed text-base sm:text-lg">
+            <p class="font-bold text-rose-500 text-xl mb-4">
+                親愛的 Tina：
+            </p>
+            <p class="mb-4">
+                祝 30 歲生日快樂！🎂<br>
+                附上我最喜歡的 Adele 專輯《30》，畢竟一生只有一次，可以在 30 歲這年聽著《30》。
+            </p>
+            <p class="mb-4">
+                30 歲真的是個很神奇的數字，褪去了 20 歲的焦躁與喧鬧，多了一點游刃有餘的從容。
+            </p>
+            <p class="mb-4">
+                人生未來會發生什麼，其實誰也說不準；但生活裡還有那麼多沒見過、沒聽過的事，光是發現那些微小的驚奇（就像突然發現腳踏車坐墊調高原來比較好踩一樣），就覺得活著真有趣。🚲
+            </p>
+            <p class="mb-4">
+                不需要把什麼都看透，餓了就吃、睏了就睡、吹吹風、喝口水，只要現在能開心地笑著，那就很好啦。
+            </p>
+            <p class="mb-4">
+                30 代，帶著滿滿的好奇心與周圍的感謝，誠實、輕盈地，像顆小石子一樣咕嚕咕嚕自在滾動向前吧！🪨✨
+            </p>
+            <p class="text-rose-600 font-semibold pt-2">
+                Anyway 希望妳也喜歡這張專輯，祝生日大快樂！✨🎶
+            </p>
+        </article>
+
+        <!-- Music Button Section -->
+        <div class="text-center">
+            <a href="https://youtube.com/playlist?list=OLAK5uy_nbBzIiQigQyLstSNBJAi2xlskeGtaq5ek&si=fgv91YopOS-lFn8B" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="animate-bounce-gentle inline-flex items-center gap-3 bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 hover:from-rose-500 hover:via-pink-500 hover:to-amber-400 text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(244,114,182,0.5)] hover:shadow-[0_15px_30px_-5px_rgba(244,114,182,0.7)] transition-all duration-300 transform hover:scale-105">
+                <span class="text-2xl">🎵</span>
+                <span>一起聽 Adele《30》播放清單</span>
+                <span class="text-xs bg-white/30 backdrop-blur-sm px-2 py-0.5 rounded-full ml-1 font-normal">YouTube</span>
+            </a>
+            <p class="text-xs text-stone-400 mt-4 tracking-wider">
+                Turn on the music & enjoy the 30s journey 💫
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Floating Sparkles & Interactive Click Confetti Script -->
+    <script>
+        const canvas = document.getElementById('sparkleCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        const colors = ['#f472b6', '#fb7185', '#fcd34d', '#34d399', '#60a5fa', '#c084fc'];
+
+        class Particle {
+            constructor(x, y, isBurst = false) {
+                this.x = x ?? Math.random() * width;
+                this.y = y ?? (isBurst ? y : Math.random() * height);
+                this.size = Math.random() * 5 + 3;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = Math.random() * 0.7 + 0.3;
+                this.isBurst = isBurst;
+
+                if (isBurst) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 6 + 2;
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+                    this.decay = Math.random() * 0.015 + 0.01;
+                } else {
+                    this.vx = (Math.random() - 0.5) * 0.6;
+                    this.vy = -(Math.random() * 0.8 + 0.3); // float upward
+                    this.decay = 0.003;
+                }
+                this.shape = Math.random() > 0.5 ? 'circle' : 'star';
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+
+                if (this.shape === 'circle') {
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    // Cute little 4-point star/sparkle
+                    const r = this.size * 1.4;
+                    ctx.moveTo(this.x, this.y - r);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x + r, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y + r);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x - r, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - r);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Initialize gentle ambient floating sparkles
+        for (let i = 0; i < 28; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Add ambient floating particles
+            if (particles.length < 32 && Math.random() < 0.08) {
+                particles.push(new Particle(Math.random() * width, height + 10));
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+                if (p.alpha <= 0 || p.y < -20 || p.x < -20 || p.x > width + 20) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Tap or click anywhere for a celebration burst of sparkles!
+        window.addEventListener('pointerdown', (e) => {
+            for (let i = 0; i < 16; i++) {
+                particles.push(new Particle(e.clientX, e.clientY, true));
+            }
+        });
+    </script>
+</body>
+</html>
