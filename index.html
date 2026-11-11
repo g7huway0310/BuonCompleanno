@@ -52,7 +52,7 @@
         .polaroid-frame:hover {
             transform: translateY(-8px) scale(1.03) rotate(0deg) !important;
             box-shadow: 0 20px 40px -10px rgba(135, 102, 116, 0.3);
-            z-index: 20;
+            z-index: 30 !important;
         }
 
         /* Cute Washi Tape effect */
@@ -97,18 +97,16 @@
             z-index: 1;
         }
 
-        /* Music Button Animation */
-        @keyframes gentle-bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        /* 黑膠唱片旋轉動畫 */
+        @keyframes spin-record {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        .animate-bounce-gentle {
-            animation: gentle-bounce 2.6s ease-in-out infinite;
+        .animate-spin-slow {
+            animation: spin-record 6s linear infinite;
+        }
+        .group:hover .animate-spin-slow {
+            animation-duration: 2s; /* 滑鼠移上去時轉快一點 */
         }
 
         /* Letter card styling */
@@ -122,7 +120,8 @@
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen py-10 px-4 sm:px-6">
+<!-- 加入 pb-24 確保手機 Safari 底部滑動時不會擋住字 -->
+<body class="flex items-center justify-center min-h-screen pt-10 pb-24 sm:py-10 px-4 sm:px-6">
 
     <!-- Sparkle Animation Canvas -->
     <canvas id="sparkleCanvas"></canvas>
@@ -147,11 +146,11 @@
             </p>
         </header>
 
-        <!-- Polaroid Photos Section -->
-        <section class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-10 md:gap-12 mb-12">
+        <!-- Polaroid Photos Section (優化：手機版層疊 Scrapbook 效果) -->
+        <section class="flex flex-col sm:flex-row items-center justify-center sm:gap-10 md:gap-12 mb-12">
             
             <!-- Photo 1 -->
-            <div class="polaroid-frame w-64 sm:w-68 md:w-72 transform -rotate-2">
+            <div class="polaroid-frame w-64 sm:w-68 md:w-72 transform -rotate-3 z-10">
                 <div class="washi-tape-pink"></div>
                 <img src="IMG_9904.jpeg" alt="Tina walking in the green landscape" onerror="this.onerror=null; this.src='https://placehold.co/600x800/fecdd3/831843?text=Tina+in+Nature';">
                 <div class="mt-3 text-center text-xs text-stone-500 tracking-widest font-mono">
@@ -159,8 +158,8 @@
                 </div>
             </div>
 
-            <!-- Photo 2 -->
-            <div class="polaroid-frame w-64 sm:w-68 md:w-72 transform rotate-3 sm:mt-6">
+            <!-- Photo 2 (手機版透過負 margin 向上疊加，製造手帳感) -->
+            <div class="polaroid-frame w-64 sm:w-68 md:w-72 transform rotate-3 -mt-10 sm:mt-6 z-20">
                 <div class="washi-tape-yellow"></div>
                 <img src="IMG_9905.jpeg" alt="Tina smiling by the ocean" onerror="this.onerror=null; this.src='https://placehold.co/600x800/fef08a/713f12?text=Tina+at+Sea';">
                 <div class="mt-3 text-center text-xs text-stone-500 tracking-widest font-mono">
@@ -170,7 +169,7 @@
 
         </section>
 
-        <!-- Birthday Message Letter -->
+        <!-- Birthday Message Letter (優化：語氣潤飾與排版斷行) -->
         <article class="letter-paper rounded-2xl p-6 sm:p-9 shadow-inner border border-rose-100/80 mb-10 text-gray-700 leading-relaxed text-base sm:text-lg">
             <p class="font-bold text-rose-500 text-xl mb-4">
                 親愛的 Tina：
@@ -186,36 +185,44 @@
                 30感覺也是最有多樣性的歲數，同樣歲數有人可以是超級奶爸，有人可以是運動員，有人可以吃兩頓起家雞，有人可以是瘋狂追星族，超級有趣的年紀。
             </p>
             <p class="mb-4">
-                我覺得我生活裡熱愛生活的人越來越少了，NPC越來越多了，真可惜。不過但你是其中熱愛生活的🫶感恩有你，請持續生活 保持健康
-                祝有更多好玩有趣的故事發生
+                我覺得我生活裡熱愛生活的人越來越少了，NPC越來越多了，真可惜。但妳是少數真心熱愛生活的人🫶<br><br>
+                感恩有妳。<br>
+                請繼續好好生活、保持健康，祝 30 代有更多好玩有趣的故事發生！✨
             </p>
             <p class="text-rose-600 font-semibold pt-2">
-                Anyway 希望妳也喜歡這張專輯，祝生日大快樂！✨🎶
+                Anyway 希望妳也喜歡這張專輯，祝生日大快樂！🎶
             </p>
         </article>
 
-        <!-- Music Button Section -->
-        <!-- Music Button Section (優化後的自適應結構) -->
+        <!-- Music Button Section (優化：黑膠唱片播放器樣式) -->
         <div class="text-center px-1">
-            <a href="https://www.youtube.com/watch?list=PLFAcddgaFN8wGOLCvAo1Wuzkc08ilzv9p&index=1"
+            <!-- 直接將網址改為影片播放器帶 index=2，保證播放 Easy On Me -->
+            <a href="https://www.youtube.com/watch?list=PLFAcddgaFN8wGOLCvAo1Wuzkc08ilzv9p&index=2"
                target="_blank" 
                rel="noopener noreferrer"
-               class="animate-bounce-gentle inline-flex flex-col items-center justify-center w-full max-w-md sm:w-auto bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 hover:from-rose-500 hover:via-pink-500 hover:to-amber-400 text-white px-5 sm:px-8 py-3.5 sm:py-4 rounded-2xl sm:rounded-full shadow-[0_10px_25px_-5px_rgba(244,114,182,0.5)] hover:shadow-[0_15px_30px_-5px_rgba(244,114,182,0.7)] transition-all duration-300 transform hover:scale-[1.02] active:scale-95 border border-white/30">
+               class="group relative inline-flex items-center justify-between w-full max-w-sm bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 hover:from-rose-500 hover:to-amber-400 text-white p-3 pr-5 rounded-2xl shadow-[0_12px_28px_-6px_rgba(244,114,182,0.45)] transition-all duration-300 active:scale-95 border border-white/40">
                 
-                <!-- 主標題列：音樂圖標 + 歌單名稱 + YouTube 徽章 -->
-                <div class="flex items-center justify-center flex-wrap gap-2 text-base sm:text-lg font-bold">
-                    <span class="text-xl sm:text-2xl">🎵</span>
-                    <span>一起聽 Adele《30》播放清單</span>
-                    <span class="text-[11px] bg-white/25 backdrop-blur-sm px-2.5 py-0.5 rounded-full font-medium tracking-normal border border-white/20">YouTube</span>
+                <!-- 左側：黑膠唱片圖標 -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-stone-900 border-2 border-stone-800 flex items-center justify-center shadow-md animate-spin-slow">
+                        <!-- 黑膠唱片中心孔 -->
+                        <div class="w-3.5 h-3.5 rounded-full bg-rose-200 border-[1.5px] border-stone-700"></div>
+                    </div>
+                    <!-- 中間文字排版 -->
+                    <div class="text-left">
+                        <div class="text-[11px] sm:text-xs text-white/90 font-medium tracking-wide">Adele 《30》</div>
+                        <div class="text-sm sm:text-base font-bold tracking-tight text-white mt-0.5">首選《Easy On Me》開聽</div>
+                    </div>
                 </div>
 
-                <!-- 副標題列：推薦首曲與夜間祝福 -->
-                <div class="text-xs sm:text-sm font-medium text-white/95 mt-1 text-center">
-                    個人首選從《Easy On Me》開聽
-                    <br>祝有美好的夜晚<br/>
+                <!-- 右側：播放箭頭與 YouTube 標記 -->
+                <div class="flex items-center gap-1.5 bg-white/25 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/30 text-[11px] font-bold text-white group-hover:bg-white group-hover:text-rose-500 transition-colors">
+                    <span>PLAY</span>
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
             </a>
-            <p class="text-xs text-stone-400 mt-4 tracking-wider">
+            
+            <p class="text-xs text-stone-400 mt-4 tracking-wider uppercase">
                 Turn on the music & enjoy the 30s journey 💫
             </p>
         </div>
@@ -259,7 +266,14 @@
                     this.vy = -(Math.random() * 0.8 + 0.3); // float upward
                     this.decay = 0.003;
                 }
-                this.shape = Math.random() > 0.5 ? 'circle' : 'star';
+                
+                // 優化：加入音符圖案 ♪ ♫
+                const rand = Math.random();
+                if (rand > 0.8) {
+                    this.shape = Math.random() > 0.5 ? 'note1' : 'note2'; // 20% 機率是音符
+                } else {
+                    this.shape = Math.random() > 0.5 ? 'circle' : 'star';
+                }
             }
 
             update() {
@@ -272,13 +286,13 @@
                 ctx.save();
                 ctx.globalAlpha = Math.max(0, this.alpha);
                 ctx.fillStyle = this.color;
-                ctx.beginPath();
 
                 if (this.shape === 'circle') {
+                    ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fill();
-                } else {
-                    // Cute little 4-point star/sparkle
+                } else if (this.shape === 'star') {
+                    ctx.beginPath();
                     const r = this.size * 1.4;
                     ctx.moveTo(this.x, this.y - r);
                     ctx.quadraticCurveTo(this.x, this.y, this.x + r, this.y);
@@ -286,6 +300,12 @@
                     ctx.quadraticCurveTo(this.x, this.y, this.x - r, this.y);
                     ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - r);
                     ctx.fill();
+                } else {
+                    // 畫音符
+                    ctx.font = `${Math.floor(this.size * 3.5)}px Arial`;
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText(this.shape === 'note1' ? '♪' : '♫', this.x, this.y);
                 }
 
                 ctx.restore();
