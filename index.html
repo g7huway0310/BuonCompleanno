@@ -195,14 +195,25 @@
         </article>
 
         <!-- Music Button Section -->
-        <div class="text-center">
+        <!-- Music Button Section (優化後的自適應結構) -->
+        <div class="text-center px-1">
             <a href="https://youtube.com/playlist?list=PLFAcddgaFN8wGOLCvAo1Wuzkc08ilzv9p&si=d-mfwa-5NRZtEYZR"
                target="_blank" 
                rel="noopener noreferrer"
-               class="animate-bounce-gentle inline-flex items-center gap-3 bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 hover:from-rose-500 hover:via-pink-500 hover:to-amber-400 text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(244,114,182,0.5)] hover:shadow-[0_15px_30px_-5px_rgba(244,114,182,0.7)] transition-all duration-300 transform hover:scale-105">
-                <span class="text-2xl">🎵</span>
-                <span>一起聽 Adele《30》播放清單 個人首選從《Easy On Me》開聽 祝有美好的夜晚</span>
-                <span class="text-xs bg-white/30 backdrop-blur-sm px-2 py-0.5 rounded-full ml-1 font-normal">YouTube</span>
+               class="animate-bounce-gentle inline-flex flex-col items-center justify-center w-full max-w-md sm:w-auto bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 hover:from-rose-500 hover:via-pink-500 hover:to-amber-400 text-white px-5 sm:px-8 py-3.5 sm:py-4 rounded-2xl sm:rounded-full shadow-[0_10px_25px_-5px_rgba(244,114,182,0.5)] hover:shadow-[0_15px_30px_-5px_rgba(244,114,182,0.7)] transition-all duration-300 transform hover:scale-[1.02] active:scale-95 border border-white/30">
+                
+                <!-- 主標題列：音樂圖標 + 歌單名稱 + YouTube 徽章 -->
+                <div class="flex items-center justify-center flex-wrap gap-2 text-base sm:text-lg font-bold">
+                    <span class="text-xl sm:text-2xl">🎵</span>
+                    <span>一起聽 Adele《30》播放清單</span>
+                    <span class="text-[11px] bg-white/25 backdrop-blur-sm px-2.5 py-0.5 rounded-full font-medium tracking-normal border border-white/20">YouTube</span>
+                </div>
+
+                <!-- 副標題列：推薦首曲與夜間祝福 -->
+                <div class="text-xs sm:text-sm font-medium text-white/95 mt-1 text-center">
+                    個人首選從《Easy On Me》開聽
+                    <br>祝有美好的夜晚<br/>
+                </div>
             </a>
             <p class="text-xs text-stone-400 mt-4 tracking-wider">
                 Turn on the music & enjoy the 30s journey 💫
